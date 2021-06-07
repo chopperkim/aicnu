@@ -102,7 +102,7 @@ class Spot:
     def __lt__(self, other):
         return False
 
-
+# heuristic function
 def h(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
@@ -157,7 +157,11 @@ def algorithm(draw, grid, start, end):
             if temp_g_score < g_score[neighbor]:
                 came_from[neighbor] = current
                 g_score[neighbor] = temp_g_score
+
+                # search cost function
+                # actual traverse cost + guess cost
                 f_score[neighbor] = temp_g_score + h(neighbor.get_pos(), end.get_pos())
+
                 if neighbor not in open_set_hash:
                     count += 1
                     open_set.put((f_score[neighbor], count, neighbor))
